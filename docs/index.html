@@ -1,56 +1,107 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <title>ABNT NBR  15985:2011 - Informática em Saúde</title>
+
+<head>
+    <title>ABNT NBR 15985:2011 - Informática em Saúde</title>
     <meta charset="utf-8">
     <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  </head>
-  <body>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- jQuery library -->
+    <link href="css/custom.css" rel="stylesheet">
+    <script src="js/index.js"></script>
+    
+    
+    
+   
+</head>
+
+<body>
     <div style="padding: 10px;">
-      <form>
-          <fieldset>
-            <legend>Cadastro</legend>
-            <div class="row">
-                <div class="form-group col-sm-4">
-                    <label for="designacao">Designação:</label>
-                    <input type="text" class="form-control" id="designacao">
+        <form>
+            <fieldset>
+                <legend>Identificador</legend>
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="tipoidentificador">Tipo do identificador:</label>
+                        <select class="form-control" id="tipoidentificador">
+                            <option>Único dentro da organização</option>
+                            <option>Número do prontuário</option>
+                            <option>Radiologia</option>
+                            <option>Patologia</option>
+                            <option>Farmácia</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-sm-4">
+                        <label for="areageografica">Área geográfica:</label>
+                        <select class="form-control" id="areageografica">
+                            <option>Local</option>
+                            <option>Área/Região/Distrito</option>
+                            <option>Estado/Província/Território</option>
+                            <option>Nacional</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-sm-4">
-                    <label for="area">Area:</label>
-                    <input type="text" class="form-control" id="area">
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="designacao">Designação:</label>
+                        <input type="text" class="form-control" id="designacao">
+                    </div>
+
+                    <div class="form-group col-sm-4">
+                        <label for="dataemissao">Data:</label>
+                        <input type="date" class="form-control" id="dataemissao">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-sm-4">
-                    <label for="emissor">Emissor:</label>
-                    <input type="text" class="form-control" id="emissor">
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="emissor">Emissor:</label>
+                        <input type="text" class="form-control" id="emissor">
+                    </div>
+
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-sm-4">
-                    <label for="dataemissao">Emissor:</label>
-                    <input type="date" class="form-control" id="dataemissao">
+
+            </fieldset>
+
+            <fieldset>
+                <legend>
+                    <span class="g_legend">Nome Completo</span> 
+                    <button href="#" class="g_show btn btn-secondary" onclick="showHideByClasses(['g_show', 'g_hide', 'naoObrigatorio']);">Mostrar Não Obrigatórios</button>
+                    <button href="#" class="g_hide btn btn-secondary" onclick="showHideByClasses(['g_show', 'g_hide', 'naoObrigatorio']);">Esconder Não Obrigatórios</button>
+                </legend>
+
+                <div class="row naoObrigatorio">
+                    <div class="form-group col-sm-4">
+                        <label class="listaDiversos" for="titulos">Título(s):</label>
+                        <input type="text" class="form-control" id="emissor">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-sm-4">
-                    <label for="tipoidentificador">Tipo do identificador:</label>
-                    <input type="text" class="form-control" id="tipoidentificador">
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label class="listaDiversos" for="nomes">Primeiro(s) nome(s):</label>
+                        <input type="text" class="form-control" id="nomes">
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="listaDiversos" for="sobrenomes">Sobrenome(s):</label>
+                        <input type="text" class="form-control" id="sobrenomes">
+                    </div>
                 </div>
-            </div>    
-          </fieldset>
-      
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form>
+                <div class="row naoObrigatorio" >
+                    <div class="form-group col-sm-4">
+                        <label class="listaDiversos" for="sufixos">Sufixo(s):</label>
+                        <input type="text" class="form-control" id="sufixos">
+                    </div>
+                </div>
+            </fieldset>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
     </div>
-  </body>
+</body>
+
 </html>

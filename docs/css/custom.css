@@ -1,0 +1,25 @@
+
+        .listaDiversos:after {
+            content : "Se houver mais de um, separe-os por espaço";
+            font-size: 9px;
+            color: gray;    
+            
+        }
+        .naoObrigatorio {
+            display: none !important;
+        }
+        .g_show {
+            display: block !important;
+        }
+        .g_hide {
+            display: none !important;
+        }
+        .g_hide, .g_show {
+            font-size: 10px;
+            float:left;
+        }
+        .g_legend {
+            width: 200px;
+            height: 30px;
+            float: left;
+        }
