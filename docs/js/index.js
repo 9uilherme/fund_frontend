@@ -6,7 +6,7 @@ app.filter('greet', function() {
     };
 })
 
-app.controller('indexController', ['$scope', function($scope) {
+app.controller('indexController', ['$scope', function($scope, $listService)  {
 
     $scope.showNaoObrigatorios = false;
 
