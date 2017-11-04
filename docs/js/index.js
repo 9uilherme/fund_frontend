@@ -2,26 +2,369 @@ var app = angular.module('myApp', []);
 
 app.filter('greet', function() {
     return function(name, namess, surname) {
-       return 'Hello, ' + name + '!';
-     };
-   })
+        return 'Hello, ' + name + '!';
+    };
+})
 
-app.controller('indexController',  ['$scope', function($scope){
+app.controller('indexController', ['$scope', function($scope) {
 
     $scope.showNaoObrigatorios = false;
-    
-    
+
+    $scope.paciente = {
+        identificador: {
+            areaGeografica: { id: 1, nome: "Local" },
+            tipoIdentificador: { id: 1, nome: "Único dentro da organização" }
+        },
+        dadosDemograficos: {
+            obito: {
+                fonte: { id: 1, nome: "Cartório" }
+            },
+            situacaoFamiliar: { id: 1, nome: "companheiro(a) e filhos" },
+            sexo: { id: 1, nome: "masculino (M)" },
+            nacionalidade: { id: 13, nome: "Armênia" }
+        }
+
+    }
+
+
+    $scope.tiposIdentificadores = [
+        { id: 1, nome: "Único dentro da organização" },
+        { id: 2, nome: "Número do prontuário" },
+        { id: 3, nome: "Radiologia" },
+        { id: 4, nome: "Patologia" },
+        { id: 4, nome: "Farmácia" }
+    ];
+
+    $scope.areasGeograficas = [
+        { id: 1, nome: "Local" },
+        { id: 2, nome: "Área/Região/Distrito" },
+        { id: 3, nome: "Estado/Província/Território" },
+        { id: 4, nome: "Nacional" }
+    ];
+
+    $scope.situacoesFamiliares = [
+        { id: 1, nome: "companheiro(a) e filhos" },
+        { id: 2, nome: "companheiro(a) com laços conjugais e sem filhos" },
+        { id: 3, nome: "companheiro(a), com filho(s) e/ou outro(s) familiar(es)" },
+        { id: 4, nome: "familiar(es) sem companheiro(a)" },
+        { id: 5, nome: "outra(s) pessoa(s) sem laços consanguíneos e/ou laços conjugais" },
+        { id: 6, nome: "vive só" }
+    ];
+
     $scope.fontes = [
-        {id: 1, nome: "Cartório"},
-        {id: 2, nome: "Prestador de assistência à saúde" },
-        {id: 3, nome: "Parente" },
-        {id: 4, nome: "Outro" },
-        {id: 5, nome: "Desconhecido " }];
-        
-        $scope.paciente = {obito : {fonte: {id: 1, nome: "Cartório"}}};
-        
-    $scope.setShowNaoObrigatorios = function(value){
+        { id: 1, nome: "Cartório" },
+        { id: 2, nome: "Prestador de assistência à saúde" },
+        { id: 3, nome: "Parente" },
+        { id: 4, nome: "Outro" },
+        { id: 5, nome: "Desconhecido" }
+    ];
+
+    $scope.cores = [
+        { id: 1, nome: "branca" },
+        { id: 2, nome: "preta" },
+        { id: 3, nome: "parda" },
+        { id: 4, nome: "amarela" },
+        { id: 5, nome: "indígena" }
+    ];
+
+    $scope.sexos = [
+        { id: 1, nome: "masculino (M)" },
+        { id: 2, nome: "feminino (F)" },
+        { id: 3, nome: "intersexo ou indeterminado (I)" },
+        { id: 4, nome: "não declarado (U)" }
+    ];
+
+    $scope.setShowNaoObrigatorios = function(value) {
         $scope.showNaoObrigatorios = value;
     };
+
+    $scope.saveOrUpdate = function(value) {
+        console.log(value);
+    }
+
+    $scope.paises = [
+        { id: 1, nome: "Afeganistão" },
+        { id: 2, nome: "África do Sul" },
+        { id: 3, nome: "Albânia" },
+        { id: 4, nome: "Alemanha" },
+        { id: 5, nome: "Andorra" },
+        { id: 6, nome: "Angola" },
+        { id: 7, nome: "Anguilla" },
+        { id: 8, nome: "Antigua e Barbuda" },
+        { id: 9, nome: "Antilhas Holandesas" },
+        { id: 10, nome: "Arábia Saudita" },
+        { id: 11, nome: "Argélia" },
+        { id: 12, nome: "Argentina" },
+        { id: 13, nome: "Armênia" },
+        { id: 14, nome: "Aruba" },
+        { id: 15, nome: "Austrália" },
+        { id: 16, nome: "Áustria" },
+        { id: 17, nome: "Azerbaijão" },
+        { id: 18, nome: "Bahamas" },
+        { id: 19, nome: "Bahrein" },
+        { id: 20, nome: "Bangladesh" },
+        { id: 21, nome: "Barbados" },
+        { id: 22, nome: "Bélgica" },
+        { id: 23, nome: "Belize" },
+        { id: 24, nome: "Benin" },
+        { id: 25, nome: "Bermudas" },
+        { id: 26, nome: "Bielorússia" },
+        { id: 27, nome: "Bolívia" },
+        { id: 28, nome: "Bósnia e Herzegóvina" },
+        { id: 29, nome: "Botswana" },
+        { id: 30, nome: "Brunei" },
+        { id: 31, nome: "Bulgária" },
+        { id: 32, nome: "Burkina Faso" },
+        { id: 33, nome: "Burundi" },
+        { id: 34, nome: "Butão" },
+        { id: 35, nome: "Cabo Verde" },
+        { id: 36, nome: "Camarões" },
+        { id: 37, nome: "Camboja" },
+        { id: 38, nome: "Canadá" },
+        { id: 39, nome: "Cazaquistão" },
+        { id: 40, nome: "Chade" },
+        { id: 41, nome: "Chile" },
+        { id: 42, nome: "China" },
+        { id: 43, nome: "Chipre" },
+        { id: 44, nome: "Cingapura" },
+        { id: 45, nome: "Colômbia" },
+        { id: 46, nome: "Coréia do Norte" },
+        { id: 47, nome: "Coréia do Sul" },
+        { id: 48, nome: "Costa do Marfim" },
+        { id: 49, nome: "Costa Rica" },
+        { id: 50, nome: "Croácia" },
+        { id: 51, nome: "Cuba" },
+        { id: 52, nome: "Dinamarca" },
+        { id: 53, nome: "Djibuti" },
+        { id: 54, nome: "Dominica" },
+        { id: 55, nome: "Egito" },
+        { id: 56, nome: "El Salvador" },
+        { id: 57, nome: "Emirados Árabes Unidos" },
+        { id: 58, nome: "Equador" },
+        { id: 59, nome: "Eritréia" },
+        { id: 60, nome: "Eslováquia" },
+        { id: 61, nome: "Eslovênia" },
+        { id: 62, nome: "Espanha" },
+        { id: 63, nome: "Estados Unidos" },
+        { id: 64, nome: "Estônia" },
+        { id: 65, nome: "Etiópia" },
+        { id: 66, nome: "Fiji" },
+        { id: 67, nome: "Filipinas" },
+        { id: 68, nome: "Finlândia" },
+        { id: 69, nome: "França" },
+        { id: 70, nome: "Gabão" },
+        { id: 71, nome: "Gâmbia" },
+        { id: 72, nome: "Geórgia" },
+        { id: 73, nome: "Ghana" },
+        { id: 74, nome: "Gibraltar" },
+        { id: 75, nome: "Granada" },
+        { id: 76, nome: "Grécia" },
+        { id: 77, nome: "Groenlândia" },
+        { id: 78, nome: "Guadalupe" },
+        { id: 79, nome: "Guam" },
+        { id: 80, nome: "Guatemala" },
+        { id: 81, nome: "Guiana" },
+        { id: 82, nome: "Guiana Francesa" },
+        { id: 83, nome: "Guiné" },
+        { id: 84, nome: "Guiné Bissau" },
+        { id: 85, nome: "Guiné Equatorial" },
+        { id: 86, nome: "Haiti" },
+        { id: 87, nome: "Holanda" },
+        { id: 88, nome: "Honduras" },
+        { id: 89, nome: "Hungria" },
+        { id: 90, nome: "Iêmen" },
+        { id: 91, nome: "Ilhas Cayman" },
+        { id: 92, nome: "Ilhas Comores" },
+        { id: 93, nome: "Ilhas Cook" },
+        { id: 94, nome: "Ilhas Falkland (Malvinas)" },
+        { id: 95, nome: "Ilhas Färoe" },
+        { id: 96, nome: "Ilhas Marianas" },
+        { id: 97, nome: "Ilhas Marshall" },
+        { id: 98, nome: "Ilhas Pitcairn" },
+        { id: 99, nome: "Ilhas Salomão" },
+        { id: 100, nome: "Ilhas Turks e Caicos" },
+        { id: 101, nome: "Ilhas Virgens Americanas" },
+        { id: 102, nome: "Ilhas Virgens Britânicas" },
+        { id: 103, nome: "Índia" },
+        { id: 104, nome: "Indonésia" },
+        { id: 105, nome: "Irã" },
+        { id: 106, nome: "Iraque" },
+        { id: 107, nome: "Irlanda" },
+        { id: 108, nome: "Islândia" },
+        { id: 109, nome: "Israel" },
+        { id: 110, nome: "Itália" },
+        { id: 111, nome: "Jamaica" },
+        { id: 112, nome: "Japão" },
+        { id: 113, nome: "Jordânia" },
+        { id: 114, nome: "Kirguistão" },
+        { id: 115, nome: "Kiribati" },
+        { id: 116, nome: "Kuwait" },
+        { id: 117, nome: "Laos" },
+        { id: 118, nome: "Lesotho" },
+        { id: 119, nome: "Letônia" },
+        { id: 120, nome: "Líbano" },
+        { id: 121, nome: "Libéria" },
+        { id: 122, nome: "Líbia" },
+        { id: 123, nome: "Liechtenstein" },
+        { id: 124, nome: "Lituânia" },
+        { id: 125, nome: "Luxemburgo" },
+        { id: 126, nome: "Macau" },
+        { id: 127, nome: "Macedônia" },
+        { id: 128, nome: "Madagáscar" },
+        { id: 129, nome: "Malaísia" },
+        { id: 130, nome: "Malawi" },
+        { id: 131, nome: "Maldivas" },
+        { id: 132, nome: "Mali" },
+        { id: 133, nome: "Malta" },
+        { id: 134, nome: "Marrocos" },
+        { id: 135, nome: "Martinica" },
+        { id: 136, nome: "Maurício" },
+        { id: 137, nome: "Mauritânia" },
+        { id: 138, nome: "Mayotte" },
+        { id: 139, nome: "México" },
+        { id: 140, nome: "Mianmar" },
+        { id: 141, nome: "Micronésia" },
+        { id: 142, nome: "Moçambique" },
+        { id: 143, nome: "Moldávia" },
+        { id: 144, nome: "Mônaco" },
+        { id: 145, nome: "Mongólia" },
+        { id: 146, nome: "Montserrat" },
+        { id: 147, nome: "Namíbia" },
+        { id: 148, nome: "Nauru" },
+        { id: 149, nome: "Nepal" },
+        { id: 150, nome: "Nicarágua" },
+        { id: 151, nome: "Níger" },
+        { id: 152, nome: "Nigéria" },
+        { id: 153, nome: "Niue" },
+        { id: 154, nome: "Noruega" },
+        { id: 155, nome: "Nova Caledônia" },
+        { id: 156, nome: "Nova Zelândia" },
+        { id: 157, nome: "Omã" },
+        { id: 158, nome: "Palau" },
+        { id: 159, nome: "Panamá" },
+        { id: 160, nome: "Papua Nova Guiné" },
+        { id: 161, nome: "Paquistão" },
+        { id: 162, nome: "Paraguai" },
+        { id: 163, nome: "Peru" },
+        { id: 164, nome: "Polinésia Francesa" },
+        { id: 165, nome: "Polônia" },
+        { id: 166, nome: "Porto Rico" },
+        { id: 167, nome: "Portugal" },
+        { id: 168, nome: "Qatar" },
+        { id: 169, nome: "Quênia" },
+        { id: 170, nome: "Reino Unido (Grã Bretanha e Irlanda do Norte)" },
+        { id: 171, nome: "República Centro Africana" },
+        { id: 172, nome: "República Democrática do Congo" },
+        { id: 173, nome: "República do Congo" },
+        { id: 174, nome: "República Dominicana" },
+        { id: 175, nome: "República Tcheca" },
+        { id: 176, nome: "Reunião" },
+        { id: 177, nome: "Romênia" },
+        { id: 178, nome: "Ruanda" },
+        { id: 179, nome: "Rússia" },
+        { id: 180, nome: "Saara Ocidental" },
+        { id: 181, nome: "Saint Pierre e Miquelon" },
+        { id: 182, nome: "Samoa" },
+        { id: 183, nome: "Samoa Americana" },
+        { id: 184, nome: "San Marino" },
+        { id: 185, nome: "Santa Helena" },
+        { id: 186, nome: "Santa Lúcia" },
+        { id: 187, nome: "São Cristóvão e Nevis" },
+        { id: 188, nome: "São Tomé e Príncipe" },
+        { id: 189, nome: "São Vicente e Granadinas" },
+        { id: 190, nome: "Senegal" },
+        { id: 191, nome: "Serra Leoa" },
+        { id: 192, nome: "Seychelles" },
+        { id: 193, nome: "Síria" },
+        { id: 194, nome: "Somália" },
+        { id: 195, nome: "Sri Lanka" },
+        { id: 196, nome: "Suazilândia" },
+        { id: 197, nome: "Sudão" },
+        { id: 198, nome: "Suécia" },
+        { id: 199, nome: "Suíça" },
+        { id: 200, nome: "Suriname" },
+        { id: 201, nome: "Tadjiquistão" },
+        { id: 202, nome: "Tailândia" },
+        { id: 203, nome: "Taiwan" },
+        { id: 204, nome: "Tanzânia" },
+        { id: 205, nome: "Timor Leste" },
+        { id: 206, nome: "Togo" },
+        { id: 207, nome: "Tokelau" },
+        { id: 208, nome: "Tonga" },
+        { id: 209, nome: "Trinidad e Tobago" },
+        { id: 210, nome: "Tunísia" },
+        { id: 211, nome: "Turcomênia" },
+        { id: 212, nome: "Turquia" },
+        { id: 213, nome: "Tuvalu" },
+        { id: 214, nome: "Ucrânia" },
+        { id: 215, nome: "Uganda" },
+        { id: 216, nome: "Uruguai" },
+        { id: 217, nome: "Uzbequistão" },
+        { id: 218, nome: "Vanuatu" },
+        { id: 219, nome: "Vaticano" },
+        { id: 220, nome: "Venezuela" },
+        { id: 221, nome: "Vietnam" },
+        { id: 222, nome: "Yugoslavia" },
+        { id: 223, nome: "Zâmbia" },
+        { id: 224, nome: "Zimbabwe" },
+        { id: 225, nome: "APÁTRIDA" },
+        { id: 226, nome: "OUTRAS NACIONALIDADES" },
+        { id: 227, nome: "IGNORADO" }
+
+    ];
+
+    $scope.municipios = [
+        { id: 1, nome: "Acrelândia" },
+        { id: 2, nome: "Assis Brasil" },
+        { id: 3, nome: "Brasiléia" },
+        { id: 4, nome: "Bujari" },
+        { id: 5, nome: "Capixaba" },
+        { id: 6, nome: "Cruzeiro do Sul" },
+        { id: 7, nome: "Epitaciolândia" },
+        { id: 8, nome: "Feijó" },
+        { id: 9, nome: "Jordão" },
+        { id: 10, nome: "Mâncio Lima" },
+        { id: 11, nome: "Manoel Urbano" },
+        { id: 12, nome: "Marechal Thaumaturgo" },
+        { id: 13, nome: "Plácido de Castro" },
+        { id: 14, nome: "Porto Acre" },
+        { id: 15, nome: "Porto Walter" },
+        { id: 16, nome: "Rio Branco" },
+        { id: 17, nome: "Rodrigues Alves" },
+        { id: 18, nome: "Santa Rosa do Purus" },
+        { id: 19, nome: "Sena Madureira" },
+        { id: 20, nome: "Senador Guiomard" },
+        { id: 21, nome: "Tarauacá" },
+        { id: 22, nome: "Xapuri" }
+
+    ];
+
+    $scope.estados = [
+        { id: 1, nome: "Acre" },
+        { id: 2, nome: "Alagoas" },
+        { id: 3, nome: "Amazonas" },
+        { id: 4, nome: "Amapá" },
+        { id: 5, nome: "Bahia" },
+        { id: 6, nome: "Ceará" },
+        { id: 7, nome: "Distrito Federal" },
+        { id: 8, nome: "Espírito Santo" },
+        { id: 9, nome: "Goiás" },
+        { id: 10, nome: "Maranhão" },
+        { id: 11, nome: "Minas Gerais" },
+        { id: 12, nome: "Mato Grosso do Sul" },
+        { id: 13, nome: "Mato Grosso" },
+        { id: 14, nome: "Pará" },
+        { id: 15, nome: "Paraíba" },
+        { id: 16, nome: "Pernambuco" },
+        { id: 17, nome: "Piauí" },
+        { id: 18, nome: "Paraná" },
+        { id: 19, nome: "Rio de Janeiro" },
+        { id: 20, nome: "Rio Grande do Norte" },
+        { id: 21, nome: "Rio Grande do Sul" },
+        { id: 22, nome: "Santa Catarina" },
+        { id: 23, nome: "Sergipe" },
+        { id: 24, nome: "São Paulo" },
+        { id: 25, nome: "Tocantins" }
+    ];
 
 }]);
