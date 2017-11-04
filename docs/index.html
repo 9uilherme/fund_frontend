@@ -18,90 +18,66 @@
     <!-- jQuery library -->
     <link href="css/custom.css" rel="stylesheet">
     <script src="js/index.js"></script>
-    
-    
-    
-   
+    <script src="js/labelInputDirective.js"></script>
+    <script src="js/labelInputDataDirective.js"></script>
+    <script src="js/labelInputSelect.js"></script>
+
+
 </head>
 
 <body ng-app="myApp">
     <div style="padding: 10px;" ng-controller="indexController">
         <form>
             <fieldset>
-                <legend>Identificador</legend>
-                <div class="row">
-                    <div class="form-group col-sm-4">
-                        <label for="tipoidentificador">Tipo do identificador:</label>
-                        <select class="form-control" id="tipoidentificador">
-                            <option>Único dentro da organização</option>
-                            <option>Número do prontuário</option>
-                            <option>Radiologia</option>
-                            <option>Patologia</option>
-                            <option>Farmácia</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group col-sm-4">
-                        <label for="areageografica">Área geográfica:</label>
-                        <select class="form-control" id="areageografica">
-                            <option>Local</option>
-                            <option>Área/Região/Distrito</option>
-                            <option>Estado/Província/Território</option>
-                            <option>Nacional</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-sm-4">
-                        <label for="designacao">Designação:</label>
-                        <input type="text" class="form-control" id="designacao">
-                    </div>
-
-                    <div class="form-group col-sm-4">
-                        <label for="dataemissao">Data:</label>
-                        <input type="date" class="form-control" id="dataemissao">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-sm-4">
-                        <label for="emissor">Emissor:</label>
-                        <input type="text" class="form-control" id="emissor">
-                    </div>
-
-                </div>
-
-            </fieldset>
-
-            <fieldset>
                 <legend>
-                    <span class="g_legend">Nome Completo</span> 
-                    <button href="#" 
-                            class="g_show btn btn-secondary" 
-                            ng-click="setShowNaoObrigatorios(!showNaoObrigatorios)">
+                    <span class="g_legend">Identificador</span>
+                    <button href="#" class="g_show btn btn-secondary" ng-click="setShowNaoObrigatorios(!showNaoObrigatorios)">
                             {{ showNaoObrigatorios ? 'Esconder Não Obrigatórios' : 'Mostrar Não Obrigatórios' }}
                     </button>
                 </legend>
 
-                <div class="row" ng-show="showNaoObrigatorios">
+                <div class="row">
+
                     <div class="form-group col-sm-4">
-                        <label class="listaDiversos" for="titulos">Título(s):</label>
-                        <input type="text" class="form-control" id="emissor">
+                        <label-select ng-label="Tipo do identificador" ng-lista="tiposIdentificadores" ng-model="paciente.identificador.tipoIdentificador" ng-obrigatorio="true" />
                     </div>
+                    <div class="form-group col-sm-4">
+                        <label-select ng-label="Área geográfica" ng-lista="areasGeograficas" ng-model="paciente.identificador.areaGeografica" ng-obrigatorio="true" />
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label-input ng-label="Designação" ng-placeholder="Digite a designação" ng-model="paciente.identificador.designacao" ng-obrigatorio="true" />
+                    </div>
+
                 </div>
                 <div class="row">
+
                     <div class="form-group col-sm-4">
-                        <label class="listaDiversos" for="nomes">Primeiro(s) nome(s):</label>
-                        <input type="text" class="form-control" id="nomes">
+                        <label-input-data ng-label="Data" ng-model="paciente.identificador.data" ng-obrigatorio="true" />
                     </div>
                     <div class="form-group col-sm-4">
-                        <label class="listaDiversos" for="sobrenomes">Sobrenome(s):</label>
-                        <input type="text" class="form-control" id="sobrenomes">
+                        <label-input ng-label="Emissor" ng-placeholder="Digite o seu emissor" ng-model="paciente.identificador.emissor"  ng-obrigatorio="true"/>
                     </div>
+
                 </div>
-                <div class="row" ng-show="showNaoObrigatorios">
-                    <div class="form-group col-sm-4">
-                        <label class="listaDiversos" for="sufixos">Sufixo(s):</label>
-                        <input type="text" class="form-control" id="sufixos">
+            </fieldset>
+
+            <fieldset>
+                <legend>
+                    <span class="g_legend">Nome Completo</span>
+                </legend>
+
+                <div class="row">
+                    <div class="form-group col-sm-3" ng-show="showNaoObrigatorios">
+                        <label-input ng-label-class="listaDiversos" ng-label="Título(s)" ng-placeholder="Digite o seu título" ng-model="paciente.nomeCompleto.titulo"  ng-obrigatorio="false" />
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label-input ng-label-class="listaDiversos" ng-label="Primeiro(s) nome(s)" ng-placeholder="Digite o seu primeiro nome" ng-model="paciente.nomeCompleto.primeironome" ng-obrigatorio="true"  />
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label-input ng-label-class="listaDiversos" ng-label="Sobrenome(s)" ng-placeholder="Digite o seu sobrenome" ng-model="paciente.nomeCompleto.sobrenome"  ng-obrigatorio="true" />
+                    </div>
+                    <div class="form-group col-sm-3" ng-show="showNaoObrigatorios">
+                        <label-input ng-label-class="listaDiversos" ng-label="Sufixo(s)" ng-placeholder="Digite o seu sufixo" ng-model="paciente.nomeCompleto.sufixo"  ng-obrigatorio="false" />
                     </div>
                 </div>
             </fieldset>
@@ -109,80 +85,48 @@
 
             <fieldset>
                 <legend>
-                    <span class="g_legend">Dados Demográficos</span> 
-                   
+                    <span class="g_legend">Dados Demográficos</span>
+
                 </legend>
 
                 <div class="row">
                     <div class="form-group col-sm-4">
-                        <label for="label">Pai</label>
-                        <input type="text" class="form-control" id="pai">
+                        <label-input ng-label="Nome do pai" ng-placeholder="Digite o nome do seu pai" ng-model="paciente.dadosDemograficos.nomePai" ng-obrigatorio="true" />
                     </div>
-                </div>
-                <div class="row">
                     <div class="form-group col-sm-4">
-                        <label for="label">Mãe</label>
-                        <input type="text" class="form-control" id="mae">
+                        <label-input ng-label="Nome do mãe" ng-placeholder="Digite o nome da sua mãe" ng-model="paciente.dadosDemograficos.nomeMae" ng-obrigatorio="true" />
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label-select ng-label="Situação Familiar" ng-lista="situacoesFamiliares" ng-model="paciente.dadosDemograficos.situacaoFamiliar" ng-obrigatorio="true" />
                     </div>
                 </div>
-                <div class="row">
-                    <div  class="form-group col-sm-4">
-                        <label for="situacaoFamiliar">Situação Famíliar:</label>
-                        <select class="form-control" id="situacaoFamiliar">
-                            <option>companheiro(a) e filhos</option>
-                            <option>companheiro(a) com laços conjugais e sem filhos</option>
-                            <option>companheiro(a), com filho(s) e/ou outro(s) familiar(es)</option>
-                            <option>familiar(es) sem companheiro(a)</option>
-                            <option>outra(s) pessoa(s) sem laços consanguíneos e/ou laços conjugais
-                            </option>
-                            <option>vive só
-                            </option>
-                        </select>
-
-
-                    </div>
-                </div>
-                    
-                <div class="row">
-                        <div class="form-group col-sm-4">
-                            <label for="datanascimento">Data Nascimento:</label>
-                            <input type="date" class="form-control" id="datanascimento">
-                        </div>
-                    </div>
 
                 <div class="row">
                     <div class="form-group col-sm-4">
-                        <label for="dataobito">Data Óbito:</label>
-                        <input type="date" class="form-control" id="dataobito">
+                        <label-input-data ng-label="Data nascimento" ng-model="paciente.dadosDemograficos.dataNascimento" ng-obrigatorio="true" />
                     </div>
-                    <div  class="form-group col-sm-4">
-                            <label for="situacaoFamiliar">Fonte:</label>
-                            <select  ng-options="fonte.nome for fonte in fontes track by fonte.id" class="form-control" name="fonte" id="fonte" ng-model="paciente.obito.fonte">
-                                  </select>
-    
-                        </div>
+                    <div class="form-group col-sm-4">
+                        <label-select ng-label="Sexo" ng-lista="sexos" ng-model="paciente.dadosDemograficos.sexo" ng-obrigatorio="true" />
+                    </div>
                 </div>
-
-            </fieldset>
-            
-            <fieldset>
-                <legend>
-                    <span class="g_legend">Endereços</span> 
-                   
-                </legend>
 
                 <div class="row">
                     <div class="form-group col-sm-4">
-                        <label for="label">Label</label>
-                        <input type="text" class="form-control" id="">
+                        <label-input-data ng-label="Data óbito" ng-model="paciente.dadosDemograficos.obito.dataObito" ng-obrigatorio="true" />
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label-select ng-label="Fonte" ng-lista="fontes" ng-model="paciente.dadosDemograficos.obito.fonte" ng-obrigatorio="true" />
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label-select ng-label="Países" ng-lista="paises" ng-model="paciente.dadosDemograficos.nacionalidade" ng-obrigatorio="true" />
                     </div>
                 </div>
             </fieldset>
-            
+
             <fieldset>
                 <legend>
-                    <span class="g_legend">Comunicações Eletrônicas</span> 
-                   
+                    <span class="g_legend">Endereços</span>
+
                 </legend>
 
                 <div class="row">
@@ -193,11 +137,10 @@
                 </div>
             </fieldset>
 
-            
             <fieldset>
                 <legend>
-                    <span class="g_legend">Vínculos</span> 
-                   
+                    <span class="g_legend">Comunicações Eletrônicas</span>
+
                 </legend>
 
                 <div class="row">
@@ -208,7 +151,22 @@
                 </div>
             </fieldset>
 
-            <button type="submit" class="btn btn-default">Submit</button>
+
+            <fieldset>
+                <legend>
+                    <span class="g_legend">Vínculos</span>
+
+                </legend>
+
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="label">Label</label>
+                        <input type="text" class="form-control" id="">
+                    </div>
+                </div>
+            </fieldset>
+
+            <button type="submit" ng-click="saveOrUpdate(paciente)" class="btn btn-default">Submit</button>
         </form>
     </div>
 </body>
